@@ -13165,7 +13165,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">helper</span>
@@ -13187,12 +13187,12 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>maze-id 1-1555246196
-[[-1, 2, 2, 2, 2, 2, 2, 2, -1],
- [-1, -1, 2, 2, 2, 2, 2, -1, -1],
- [2, -1, -1, 2, 2, 2, -1, -1, 2],
- [2, 2, -1, -1, 2, -1, -1, 2, 2],
- [2, 2, 2, -1, -1, -1, 2, 2, 2]]
+<pre>maze-id 1-1555506355
+[[3, 2, 2, 2, 2, 2, 2, 2, 1],
+ [0, 0, 2, 2, 2, 2, 2, 0, 0],
+ [2, 0, 0, 2, 2, 2, 0, 0, 2],
+ [2, 2, 0, 0, 2, 0, 0, 2, 2],
+ [2, 2, 2, 0, 0, 0, 2, 2, 2]]
 </pre>
 </div>
 </div>
@@ -13216,7 +13216,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#TODO 1模拟环境的行数</span>
@@ -13268,7 +13268,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#TODO 4计算模拟环境中，第一行的的障碍物个数。</span>
@@ -13334,6 +13334,42 @@ div#notebook {
 Ran 1 test in 0.001s
 
 OK
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#记录一下老师给出的示例代码</span>
+<span class="n">number_of_barriers_row1</span> <span class="o">=</span> <span class="n">env_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">number_of_barriers_col3</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">env_data</span><span class="p">))[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">#zip 把二维数组解成按列的数据，行列转换的时候很方便啊</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">env_data</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[(3, 0, 2, 2, 2), (2, 0, 0, 2, 2), (2, 2, 0, 0, 2), (2, 2, 2, 0, 0), (2, 2, 2, 2, 0), (2, 2, 2, 0, 0), (2, 2, 0, 0, 2), (2, 0, 0, 2, 2), (1, 0, 2, 2, 2)]
 </pre>
 </div>
 </div>
@@ -13520,6 +13556,39 @@ OK
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#记录老师的示例代码</span>
+<span class="c1">#真心简洁很多啊</span>
+<span class="c1">#我的代码主要的问题在于，做了很多重复的工作</span>
+<span class="c1">#其实应该分成两部分：</span>
+<span class="c1"># 四个动作控制坐标的变化</span>
+<span class="c1"># 对变化的坐标进行判断</span>
+<span class="k">def</span> <span class="nf">is_move_valid_special2</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">act</span><span class="p">):</span>
+
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">loc</span> 
+    <span class="k">if</span> <span class="n">act</span> <span class="o">==</span> <span class="s1">&#39;u&#39;</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">act</span> <span class="o">==</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">act</span> <span class="o">==</span> <span class="s1">&#39;l&#39;</span><span class="p">:</span>
+        <span class="n">y</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">act</span> <span class="o">==</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span>
+        <span class="n">y</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1">#这里使用了and or 等的熔断特性，对于and来说，一旦前一个条件为假，就不再继续</span>
+    <span class="c1">#这样可以保证数组不越界</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">columns</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">rows</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">env_data</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13531,7 +13600,7 @@ OK
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">is_move_valid</span><span class="p">(</span><span class="n">env_data</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">act</span><span class="p">):</span>
@@ -13547,33 +13616,14 @@ OK
     <span class="c1">#TODO 9</span>
     <span class="n">y</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">loc</span>
     <span class="k">if</span> <span class="n">act</span> <span class="o">==</span> <span class="s1">&#39;u&#39;</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">elif</span> <span class="n">env_data</span><span class="p">[</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>
+        <span class="n">y</span> <span class="o">-=</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">act</span> <span class="o">==</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">env_data</span><span class="p">):</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">elif</span> <span class="n">env_data</span><span class="p">[</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>
+        <span class="n">y</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">act</span> <span class="o">==</span> <span class="s1">&#39;l&#39;</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">x</span><span class="o">-</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">elif</span> <span class="n">env_data</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>
+        <span class="n">x</span> <span class="o">-=</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">act</span> <span class="o">==</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">env_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">elif</span> <span class="n">env_data</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>
+        <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">env_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">env_data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">env_data</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">x</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13583,7 +13633,7 @@ OK
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">run</span> -i -e test.py RobotControllortTestCase.test_is_move_valid
@@ -13605,7 +13655,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.
 ----------------------------------------------------------------------
-Ran 1 test in 0.000s
+Ran 1 test in 0.001s
 
 OK
 </pre>
@@ -13636,8 +13686,10 @@ OK
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>回答：</strong> （请在这里填写你的回答）</p>
 <ol>
-<li>在任务5中的<code>env_data</code> 变量的作用域仅局限在函数体中，是<code>局部变量</code>在其他函数中并不能使用该变量；而在任务4中使用的<code>env_data</code>是<code>全局变量</code>，在所有作用域可用。当两种作用域的变量命名冲突时，python优先读取局部作用域的变量。</li>
-<li>如果在函数内部修改env_data, 是会导致env_data的改变，因为env_data是<code>可变类型</code></li>
+<li><p>在任务5中的<code>env_data</code> 变量的作用域仅局限在函数体中，是<code>局部变量</code>在其他函数中并不能使用该变量；而在任务4中使用的<code>env_data</code>是<code>全局变量</code>，在所有作用域可用。当两种作用域的变量命名冲突时，python优先读取局部作用域的变量。</p>
+</li>
+<li><p>如果在函数内部修改env_data, 是会导致env_data的改变，因为env_data是<code>可变类型</code>，<code>可变类型</code>在传递到函数的过程中是<code>引用传递</code>,也就是对象和形参指向的内存地址是一致的，所以对形参的修改会直接影响外部对象。而<code>不可变类型</code>，例如字符串，数字等，是<code>值传递</code>，外部变量和形参的值虽然一样，但它们所指向的内存地址是不一样的，所以对形参的修改不会影响外部对象</p>
+</li>
 </ol>
 
 </div>
@@ -13705,6 +13757,24 @@ OK
 </div>
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#老师的示例代码</span>
+<span class="c1">#很简洁，利用了列表推导式</span>
+<span class="k">def</span> <span class="nf">valid_actions2</span><span class="p">(</span><span class="n">env_data</span><span class="p">,</span> <span class="n">loc</span><span class="p">):</span>
+    <span class="n">act</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">]</span>
+    <span class="n">result_list</span><span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">act</span> <span class="k">if</span> <span class="n">is_move_valid</span><span class="p">(</span><span class="n">env_data</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">x</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">result_list</span>
+</pre></div>
+
+    </div>
 </div>
 </div>
 
@@ -14321,6 +14391,148 @@ OK
 </div>
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>记录一下老师给的示例代码</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 使用队列实现广度优先寻路算法</span>
+<span class="kn">import</span> <span class="nn">queue</span>
+<span class="k">def</span> <span class="nf">bfs</span><span class="p">(</span><span class="n">env_data</span><span class="p">,</span> <span class="n">loc</span><span class="p">):</span>
+  <span class="n">visited</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">path</span> <span class="o">=</span> <span class="p">{}</span>
+  <span class="n">final_path</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">q</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+  <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span>
+  <span class="k">while</span> <span class="ow">not</span> <span class="n">q</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+      <span class="c1"># 机器人可移动的位置列表</span>
+      <span class="n">move_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">move_robot</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">act</span><span class="p">)</span> <span class="k">for</span> <span class="n">act</span> <span class="ow">in</span> <span class="n">valid_actions</span><span class="p">(</span><span class="n">env_data</span><span class="p">,</span> <span class="n">loc</span><span class="p">)]</span>
+      <span class="k">for</span> <span class="n">move</span> <span class="ow">in</span> <span class="n">move_list</span><span class="p">:</span>
+          <span class="c1"># 如果位置未被访问，则加入队列</span>
+          <span class="k">if</span> <span class="n">move</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+              <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
+              <span class="c1"># 将移动位置和其之前的位置记录下来</span>
+              <span class="n">path</span><span class="p">[</span><span class="n">move</span><span class="p">]</span> <span class="o">=</span> <span class="n">loc</span>
+      <span class="c1"># 取出队列最先的元素</span>
+      <span class="n">loc</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+      <span class="c1"># 位置被访问后，记录在visited列表中</span>
+      <span class="k">if</span> <span class="n">loc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+          <span class="n">visited</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span>
+          <span class="k">if</span> <span class="n">loc</span> <span class="o">==</span> <span class="n">loc_map</span><span class="p">[</span><span class="s1">&#39;destination&#39;</span><span class="p">]:</span>
+              <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;到达终点&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="p">)</span>
+              <span class="k">break</span>
+  <span class="c1"># 得到算法找到的路径</span>
+  <span class="n">cur_loc</span> <span class="o">=</span> <span class="n">loc_map</span><span class="p">[</span><span class="s1">&#39;destination&#39;</span><span class="p">]</span>
+  <span class="n">final_path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur_loc</span><span class="p">)</span>
+  <span class="k">while</span> <span class="n">loc_map</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">final_path</span><span class="p">:</span>
+      <span class="n">cur_loc</span> <span class="o">=</span> <span class="n">path</span><span class="p">[</span><span class="n">cur_loc</span><span class="p">]</span>
+      <span class="n">final_path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur_loc</span><span class="p">)</span>
+
+  <span class="n">final_path</span> <span class="o">=</span> <span class="n">final_path</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">final_path</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">env_data</span><span class="p">,</span><span class="n">loc</span><span class="p">):</span>
+  <span class="k">if</span>  <span class="n">loc</span> <span class="o">==</span> <span class="n">loc_map</span><span class="p">[</span><span class="s2">&quot;destination&quot;</span><span class="p">]:</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;找到宝藏！&quot;</span><span class="p">)</span>
+  <span class="n">acts</span> <span class="o">=</span> <span class="n">valid_actions</span><span class="p">(</span><span class="n">env_data</span><span class="p">,</span><span class="n">loc</span><span class="p">)</span>
+  <span class="c1">#将移动过的位置标记下</span>
+  <span class="n">env_data</span><span class="p">[</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">2</span> 
+  <span class="k">for</span> <span class="n">act</span> <span class="ow">in</span> <span class="n">acts</span><span class="p">:</span>
+      <span class="n">new_loc</span> <span class="o">=</span> <span class="n">move_robot</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span><span class="n">act</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">new_loc</span> <span class="o">!=</span> <span class="n">loc</span> <span class="ow">and</span> <span class="n">env_data</span><span class="p">[</span><span class="n">new_loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">new_loc</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">!=</span><span class="mi">2</span><span class="p">:</span>
+          <span class="nb">print</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span>
+          <span class="n">dfs</span><span class="p">(</span><span class="n">env_data</span><span class="p">,</span><span class="n">new_loc</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">h_value</span><span class="p">(</span><span class="n">start_loc</span><span class="p">,</span> <span class="n">end_loc</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">start_loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">end_loc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">start_loc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">end_loc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">astar_pathfinding</span><span class="p">(</span><span class="n">env_data</span><span class="p">,</span> <span class="n">start_loc</span><span class="p">,</span> <span class="n">end_loc</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    在地图env_data中寻找从start_loc到destination_loc的可行路径</span>
+<span class="sd">    env_data：地图数据，2维列表数据格式</span>
+<span class="sd">    start_loc：起始位置，(x , y)元组数据格式</span>
+<span class="sd">    end_loc：目标位置，(x , y)元组数据格式</span>
+<span class="sd">    函数返回一个路径列表，列表的每个元素为代表地图位置的(x , y)元组数据</span>
+<span class="sd">    路径排序算法f = g + h，g值为从起点到指定节点的路径代价，h值为从指定节点到终点的估算路径代价</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">final_path</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">open_list</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">close_list</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1">#将起点放入open list中，并设置g值为0，设置父节点为自身，用字典复合数据结构[f,g,h,父节点]</span>
+    <span class="n">start_to_end</span> <span class="o">=</span> <span class="n">h_value</span><span class="p">(</span><span class="n">start_loc</span><span class="p">,</span> <span class="n">end_loc</span><span class="p">)</span>
+    <span class="n">open_list</span><span class="p">[</span><span class="n">start_loc</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">start_to_end</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">start_to_end</span><span class="p">,</span> <span class="n">start_loc</span><span class="p">]</span>
+
+    <span class="c1">#如果已经在close list中或属于不可通过节点或超出边界，则直接忽略</span>
+    <span class="c1">#如果可通过则加入open list</span>
+    <span class="k">while</span> <span class="n">end_loc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">open_list</span><span class="p">:</span>
+        <span class="c1">#对open list中的数据进行排序，选择f值最小的一个节点，设为当前节点</span>
+        <span class="n">cur_loc</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">open_list</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">open_list</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1">#对当前节点上下左右4个节点进行计算分析</span>
+        <span class="k">for</span> <span class="n">act</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;u&quot;</span><span class="p">,</span><span class="s2">&quot;d&quot;</span><span class="p">,</span><span class="s2">&quot;l&quot;</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">is_move_valid</span><span class="p">(</span><span class="n">env_data</span><span class="p">,</span> <span class="n">cur_loc</span><span class="p">,</span> <span class="n">act</span><span class="p">):</span>  <span class="c1">#如果节点超出边界或不可通过，则直接忽略</span>
+                <span class="n">next_loc</span> <span class="o">=</span> <span class="n">move_robot</span><span class="p">(</span><span class="n">cur_loc</span><span class="p">,</span> <span class="n">act</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">next_loc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">close_list</span><span class="p">:</span>         <span class="c1">#如果节点在close list中，则直接忽略</span>
+                    <span class="n">g</span> <span class="o">=</span> <span class="n">open_list</span><span class="p">[</span><span class="n">cur_loc</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">next_loc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">open_list</span><span class="p">:</span>      <span class="c1">#如果节点不在open list中，则添加到open list中</span>
+                        <span class="n">h</span> <span class="o">=</span> <span class="n">h_value</span><span class="p">(</span><span class="n">next_loc</span><span class="p">,</span> <span class="n">end_loc</span><span class="p">)</span>
+                        <span class="n">open_list</span><span class="p">[</span><span class="n">next_loc</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">g</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">cur_loc</span><span class="p">]</span>
+                    <span class="k">elif</span> <span class="n">g</span> <span class="o">&lt;</span> <span class="n">open_list</span><span class="p">[</span><span class="n">next_loc</span><span class="p">][</span><span class="mi">1</span><span class="p">]:</span>   <span class="c1">#如果节点在open list中，则比较g值大小</span>
+                        <span class="n">open_list</span><span class="p">[</span><span class="n">next_loc</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">g</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">cur_loc</span><span class="p">]</span>
+        <span class="n">close_list</span><span class="p">[</span><span class="n">cur_loc</span><span class="p">]</span> <span class="o">=</span> <span class="n">open_list</span><span class="p">[</span><span class="n">cur_loc</span><span class="p">]</span>       <span class="c1">#将当前节点添加到close list中</span>
+        <span class="k">del</span> <span class="n">open_list</span><span class="p">[</span><span class="n">cur_loc</span><span class="p">]</span>                         <span class="c1">#将当前节点从open list中删除</span>
+
+    <span class="c1">#print(open_list)</span>
+    <span class="c1">#print(close_list)</span>
+    <span class="c1">#从终点开始，依次通过父节点返回到起点</span>
+    <span class="n">close_list</span><span class="p">[</span><span class="n">end_loc</span><span class="p">]</span> <span class="o">=</span> <span class="n">open_list</span><span class="p">[</span><span class="n">end_loc</span><span class="p">]</span>
+    <span class="n">cur_loc</span> <span class="o">=</span> <span class="n">end_loc</span>
+    <span class="n">final_path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur_loc</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">start_loc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">final_path</span><span class="p">:</span>
+        <span class="n">cur_loc</span> <span class="o">=</span> <span class="n">close_list</span><span class="p">[</span><span class="n">cur_loc</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">final_path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur_loc</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">final_path</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">final_path</span> <span class="o">=</span> <span class="n">astar_pathfinding</span><span class="p">(</span><span class="n">env_data</span><span class="p">,</span> <span class="n">loc_map</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">],</span> <span class="n">loc_map</span><span class="p">[</span><span class="s2">&quot;destination&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">final_path</span><span class="p">)</span>
+</pre></div>
+
+    </div>
 </div>
 </div>
 
