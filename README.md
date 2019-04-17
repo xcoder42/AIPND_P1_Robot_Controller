@@ -1,6 +1,6 @@
 # AIPND_P1_Robot_Controller
 nd089-cn-p1
 
-欢迎来到AIPND-p1，你将在`Robot Controller.ipynb`中完成这一项目。
+学习班：python人工智能入门纳米学位  2019/04/03期
+学员：陈云
 
-Have fun and enjoy it!
